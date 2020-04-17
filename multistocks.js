@@ -3,7 +3,9 @@ var g_selectedStocksSymbols = null;
 var g_db = DBFactory.getDB();
 var g_stocksProvider = StocksProviderFactory.getStocksProvider();
 
-function init() {
+async function init() {
+
+	await g_db.init();
 
 	g_stocksProvider.getAllStocks(function(allStocks) {
 		setStocksList(allStocks);
