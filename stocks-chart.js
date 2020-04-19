@@ -39,7 +39,7 @@ function buildDataSets(stocksData) {
 
 function buildDataForSet(stockData) {
     return {
-        label: stockData.quote["companyName"],
+        label: g_stockId2Name[stockData.quote.symbol], //stockData.quote["companyName"],
         backgroundColor: 'transparent',
         data: normalize(stockData.chart),
         borderColor: getNextColor(),

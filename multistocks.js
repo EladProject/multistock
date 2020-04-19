@@ -2,6 +2,7 @@
 var g_selectedStocksSymbols = null;
 var g_db = DBFactory.getDB();
 var g_stocksProvider = StocksProviderFactory.getStocksProvider();
+var g_stockId2Name = {};
 
 async function init() {
 
@@ -30,11 +31,15 @@ function setStocksList(allStocks) {
 			text: stockData["name"]
 		};
 
+		// Save id to name mapping
+		g_stockId2Name[obj.id] = obj.text;
+
 		return obj;
 	});
 	
 	$('#all-stocks-list').select2({
-		"data": data
+		"data": data,
+		minimumInputLength: 3
 	});
 	
 }
