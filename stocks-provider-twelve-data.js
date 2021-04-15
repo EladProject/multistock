@@ -69,9 +69,11 @@ class StocksProviderTwelveData extends StocksProvider {
         var converted = {};
 
         for (const symbol in data) {
-            converted[symbol] = {
-                quote: data[symbol].meta,
-                chart: this.convertValues(data[symbol].values)
+            if (typeof data[symbol].values !== 'undefined') {
+                converted[symbol] = {
+                    quote: data[symbol].meta,
+                    chart: this.convertValues(data[symbol].values)
+                }
             }
         };
 
@@ -79,6 +81,7 @@ class StocksProviderTwelveData extends StocksProvider {
     }
 
     convertValues(values) {
+
         var values =  values.map((val) => {
             return {
                 close: val.close,
